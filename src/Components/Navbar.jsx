@@ -135,24 +135,59 @@ const Navbar = () => {
       {/* Full-Screen Dropdown Menu */}
       {isMenuOpen && (
         <div className="fixed inset-0 bg-gray-900 bg-opacity-95 z-50 flex flex-col items-center justify-center space-y-6">
-          {['Github', 'Linkedin', 'Hackerrank'].map((item, index) => (
-            <a
-              key={index}
-              href="/"
-              className="text-gray-100 text-2xl font-semibold hover:text-purple-400 transition duration-300"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              {item}
-            </a>
-          ))}
-
           {/* Close Button */}
           <button
-            className="mt-6 text-gray-300 text-lg border border-gray-700 px-4 py-2 rounded-md hover:bg-gray-700 transition duration-300"
             onClick={() => setIsMenuOpen(false)}
+            className="absolute top-4 right-4 text-gray-300 hover:text-purple-500 transition duration-300 transform hover:scale-110"
           >
-            Close Menu
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={2}
+              stroke="currentColor"
+              className="w-6 h-6"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M6 18L18 6M6 6l12 12"
+              />
+            </svg>
           </button>
+
+          <a
+            href="/"
+            className="text-white text-2xl"
+          >
+            Alisha Khatun
+          </a>
+          <div className="flex gap-6">
+            <a
+              href="https://github.com/Alisha1302/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-300 hover:text-purple-500 transition duration-300 transform hover:scale-110"
+            >
+              GitHub
+            </a>
+            <a
+              href="https://www.linkedin.com/in/alisha-khatun/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-300 hover:text-purple-500 transition duration-300 transform hover:scale-110"
+            >
+              LinkedIn
+            </a>
+            <a
+              href="https://www.hackerrank.com/profile/alisha13022003ak"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-300 hover:text-purple-500 transition duration-300 transform hover:scale-110"
+            >
+              HackerRank
+            </a>
+          </div>
         </div>
       )}
     </nav>

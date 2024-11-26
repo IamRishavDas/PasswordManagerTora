@@ -13,6 +13,7 @@ const Manager = () => {
   }, []);
 
   const savePassword = () => {
+    if(form.url === "" || form.username === "" || form.password === "") return;
     setPasswordArray([...passwordArray, form]);
     localStorage.setItem("passwords", JSON.stringify([...passwordArray, form]));
     setform({ url: "", username: "", password: "" }); // Clear input fields
@@ -27,6 +28,14 @@ const Manager = () => {
     alert("Password copied to clipboard!");
   };
 
+  // Delete all passwords from localStorage and reset the password array
+  const handleDeleteAll = () => {
+    if (window.confirm("Are you sure you want to delete all stored passwords?")) {
+      localStorage.removeItem("passwords");
+      setPasswordArray([]);
+    }
+  };
+
   return (
     <>
       {/* Background Design */}
@@ -34,7 +43,7 @@ const Manager = () => {
         {/* Main Container */}
         <div className="container mx-auto max-w-7xl p-10 mt-10">
           {/* Stylish Image */}
-          <div className="relative overflow-hidden rounded-lg shadow-lg transform hover:scale-105 transition duration-500">
+          <div className="relative overflow-hidden rounded-lg shadow-lg transform hover:scale-105 transition duration-500 ml-10">
             <img
               src="https://www.pngmart.com/files/22/Password-PNG-Transparent.png"
               alt="Password Manager"
@@ -59,7 +68,7 @@ const Manager = () => {
                 onChange={handleChange}
                 name="username"
                 type="text"
-                placeholder="Enter User Name"
+                placeholder="Enter Username"
                 className="w-full px-5 py-3 bg-gray-800 text-gray-300 border border-gray-600 rounded-3xl focus:outline-none focus:ring-2 focus:ring-purple-500 transition duration-300"
               />
               <div className="relative w-full">
@@ -68,7 +77,7 @@ const Manager = () => {
                   onChange={handleChange}
                   name="password"
                   type={showPassword ? "text" : "password"}
-                  placeholder="Enter Password"
+                  placeholder="Password"
                   className="w-full px-5 py-3 bg-gray-800 text-gray-300 border border-gray-600 rounded-3xl focus:outline-none focus:ring-2 focus:ring-purple-500 transition duration-300"
                 />
                 <button
@@ -76,7 +85,7 @@ const Manager = () => {
                   onClick={() => setShowPassword(!showPassword)}
                   className="absolute inset-y-0 right-4 flex items-center text-gray-400 hover:text-gray-200"
                 >
-                  {showPassword ? "" : ""}
+                  {showPassword ? "hide" : "show"}
                 </button>
               </div>
             </div>
@@ -136,6 +145,16 @@ const Manager = () => {
               </tbody>
             </table>
           </div>
+        </div>
+
+        {/* Delete All Button */}
+        <div className="text-center mt-10">
+          <button
+            onClick={handleDeleteAll}
+            className="px-6 py-3 bg-red-600 hover:bg-red-500 text-white font-semibold rounded-3xl shadow-md transition duration-300 transform hover:scale-105"
+          >
+            Delete All Passwords
+          </button>
         </div>
       </div>
     </>
